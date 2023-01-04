@@ -2,7 +2,8 @@ import 'dart:ui';
 
 class AppColor{
   static Color navBarColor = HexColor('#2A313B');
-  static Color categoryTextColor = HexColor('#EDAF21');
+  static Color categoryNameColor = HexColor('#EDAF21');
+  static Color categoryTextColor = HexColor('#A2A2A2');
   static Color poksBackgroundColor = HexColor('#FFC313');
 
 }

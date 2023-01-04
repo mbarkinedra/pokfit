@@ -114,14 +114,12 @@ class HomeScreen extends GetView<HomeController> {
                             SizedBox(
                               width: 4,
                             ),
-
-                              CircleAvatar(
-                                backgroundImage: NetworkImage(
-                                    "https://cdn-icons-png.flaticon.com/512/206/206881.png"),
-                                backgroundColor: Colors.deepPurple,
-                                maxRadius: 25,
-                              ),
-
+                            CircleAvatar(
+                              backgroundImage: NetworkImage(
+                                  "https://cdn-icons-png.flaticon.com/512/206/206881.png"),
+                              backgroundColor: Colors.deepPurple,
+                              maxRadius: 25,
+                            ),
                             SizedBox(
                               width: 8,
                             ),
@@ -172,15 +170,15 @@ class HomeScreen extends GetView<HomeController> {
                                             boxShadow: [
                                               BoxShadow(
                                                 color: Colors.grey
-                                                    .withOpacity(0.4),
+                                                    .withOpacity(0.5),
                                                 spreadRadius: 1,
-                                                blurRadius: 3,
+                                                blurRadius: 4,
                                                 offset: Offset(0, 2),
                                               ),
                                             ],
                                           ),
                                           child: CircleAvatar(
-                                            child: Image.network(logic
+                                            backgroundImage: NetworkImage(logic
                                                 .categoriesModel!
                                                 .data![pos]
                                                 .icon!),
@@ -199,13 +197,18 @@ class HomeScreen extends GetView<HomeController> {
                                                 "${logic.categoriesModel?.data?[pos].name}",
                                                 style: TextStyle(
                                                     color: AppColor
-                                                        .categoryTextColor)),
+                                                        .categoryNameColor)),
                                             SizedBox(
                                               height: 4,
                                             ),
                                             Text("",
                                                 style: TextStyle(
                                                     color: Colors.yellow)),
+                                            Text("09 Event",
+                                                style: TextStyle(
+                                                    color: AppColor
+                                                        .categoryTextColor,
+                                                    fontSize: 11))
                                           ],
                                         ),
                                       ]),
@@ -358,7 +361,7 @@ class HomeScreen extends GetView<HomeController> {
                         print(e.endDate);
 
                         return ChallengesWidgetItem(
-                          date: "${e.createdAt?.substring(0, 10)}  ",
+                          date: "${e.createdAt?.substring(1, 11)}  ",
                           image: e.image!,
                           time: "${e.updatedAt?.substring(11, 16)}",
                           high: 70,
@@ -392,7 +395,7 @@ class HomeScreen extends GetView<HomeController> {
                         children: [
                           Container(
                             height: 25,
-                            color: Colors.amber,
+                            color: AppColor.poksBackgroundColor,
                             width: 6,
                           ),
                           SizedBox(
@@ -437,7 +440,7 @@ class HomeScreen extends GetView<HomeController> {
                                     alignment: Alignment.bottomCenter,
                                     height: 60,
                                     decoration: BoxDecoration(
-                                        color: Colors.white.withOpacity(.19)),
+                                        color: Colors.grey.withOpacity(.17)),
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Row(
@@ -447,16 +450,16 @@ class HomeScreen extends GetView<HomeController> {
                                                   MainAxisAlignment.spaceAround,
                                               children: [
                                                 Text(
-                                                    "${logic.homeModel!.trainings![pos].createdAt?.substring(1, 10)}",
+                                                    "${logic.homeModel!.trainings![pos].createdAt?.substring(11, 16)}",
                                                     style: TextStyle(
-                                                        color: Colors.white,
+                                                        color: Colors.blueGrey,
                                                         fontSize: 14,
                                                         fontWeight:
                                                             FontWeight.w500)),
                                                 Text(
-                                                    "${logic.homeModel!.trainings![pos].startDate}",
+                                                    "${logic.homeModel!.trainings![pos].startDate?.substring(0,11)}",
                                                     style: TextStyle(
-                                                        color: Colors.white))
+                                                        color: Colors.blueGrey))
                                               ]),
                                           Expanded(
                                               child: Container(
@@ -464,8 +467,8 @@ class HomeScreen extends GetView<HomeController> {
                                             decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(10),
-                                                color: Colors.white
-                                                    .withOpacity(.3)),
+                                                color: Colors.blueGrey
+                                                    .withOpacity(.2)),
                                             child: Row(children: [
                                               Expanded(
                                                   flex: 2,
@@ -473,12 +476,12 @@ class HomeScreen extends GetView<HomeController> {
                                                       child: FittedBox(
                                                     fit: BoxFit.fitWidth,
                                                     child: Text(
-                                                      "join Now",
+                                                      "Join Now",
                                                       style: TextStyle(
                                                           color: Colors.black,
                                                           fontWeight:
                                                               FontWeight.bold,
-                                                          fontSize: 10),
+                                                          fontSize: 11),
                                                     ),
                                                   ))),
                                               Expanded(
@@ -525,12 +528,17 @@ class HomeScreen extends GetView<HomeController> {
                           ),
                           Text(
                             "Shops",
-                            style: TextStyle(fontSize: 17),
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
                           ),
                           Spacer(),
                           Text(
                             "View All",
-                          ),
+                            style: TextStyle(
+                              fontSize: 14,
+                            ),
+                          )
                         ],
                       )),
                     ),
@@ -568,30 +576,28 @@ class HomeScreen extends GetView<HomeController> {
           }),
         ),
         bottomNavigationBar: BottomNavigationBar(
-
           type: BottomNavigationBarType.fixed,
           elevation: 5,
-          backgroundColor:  AppColor.navBarColor,
+          backgroundColor: AppColor.navBarColor,
           selectedItemColor: Colors.white,
           //currentIndex: logic.navigatorValue,
           unselectedItemColor: Colors.grey,
           showSelectedLabels: false,
           showUnselectedLabels: false,
+          selectedLabelStyle: TextStyle(fontSize: 11),
           // onTap: logic.changeSelectedValue,
           items: [
             BottomNavigationBarItem(
                 backgroundColor: AppColor.navBarColor,
-                icon: ImageIcon(AssetImage("assets/image/home.png"),size: 5),
+                icon: Icon(Icons.home),
                 label: "home"),
             BottomNavigationBarItem(
-                icon: ImageIcon(AssetImage('assets/image/challenge.png')),
+                icon: Icon(Icons.account_balance_wallet_outlined),
                 label: "challenge"),
+            BottomNavigationBarItem(icon: Icon(Icons.shop_2), label: "Shop"),
             BottomNavigationBarItem(
-                icon: ImageIcon(AssetImage('assets/image/shop.png')),
-                label: "Shop"),
-            BottomNavigationBarItem(
-              icon: ImageIcon(AssetImage('assets/images/icon_settings.png')),
-              label: "setting",
+              icon: Icon(Icons.person),
+              label: "Profile",
             )
           ],
         ),
