@@ -114,13 +114,14 @@ class HomeScreen extends GetView<HomeController> {
                             SizedBox(
                               width: 4,
                             ),
-                            Container(
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.greenAccent),
-                              height: 60,
-                              width: 60,
-                            ),
+
+                              CircleAvatar(
+                                backgroundImage: NetworkImage(
+                                    "https://cdn-icons-png.flaticon.com/512/206/206881.png"),
+                                backgroundColor: Colors.deepPurple,
+                                maxRadius: 25,
+                              ),
+
                             SizedBox(
                               width: 8,
                             ),
@@ -533,71 +534,68 @@ class HomeScreen extends GetView<HomeController> {
                         ],
                       )),
                     ),
-              SizedBox(
-                height: 200,
-                child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: imageSliders2.length,
-                    itemBuilder: (context, pos) {
-                      return Padding(
-                        padding: const EdgeInsets.all(9.0),
-                        child: Container(
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width * .7,
-                            alignment: Alignment.bottomCenter,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Container(
-                                      height: 50,
-                                      width: 50,
-                                      decoration: BoxDecoration(),
-                                    )
-                                  ],
-                                )
-                              ],
-                            )),
-                      );
-                    }),
-              )
-            ]);
+                    SizedBox(
+                      height: 200,
+                      child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: imageSliders2.length,
+                          itemBuilder: (context, pos) {
+                            return Padding(
+                              padding: const EdgeInsets.all(9.0),
+                              child: Container(
+                                  width: MediaQuery.of(context).size.width * .7,
+                                  alignment: Alignment.bottomCenter,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Container(
+                                            height: 50,
+                                            width: 50,
+                                            decoration: BoxDecoration(),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  )),
+                            );
+                          }),
+                    )
+                  ]);
           }),
-        ),   bottomNavigationBar:   BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        elevation: 5,
-        backgroundColor: Theme.of(context).primaryColor.withAlpha(0),
-        selectedItemColor: AppColor.navBarColor,
-        //currentIndex: logic.navigatorValue,
-        unselectedItemColor: Colors.grey,
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-       // onTap: logic.changeSelectedValue,
-        items: [
-          BottomNavigationBarItem(
-            backgroundColor: AppColor.navBarColor,
-              icon: ImageIcon(AssetImage("assets/image/2.png")),
-              label: "home".tr),
-          BottomNavigationBarItem(
-              icon: ImageIcon(AssetImage('assets/images/icon_seizure.png')),
-              label: "seizure".tr),
-          BottomNavigationBarItem(
-              icon:
-              ImageIcon(AssetImage('assets/images/icon_medecine.png')),
-              label: "medecine".tr),
-          BottomNavigationBarItem(
-            icon: ImageIcon(AssetImage('assets/images/icon_settings.png')),
-            label: "setting".tr,
-          )
-        ],
-      ),
-      ),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
 
+          type: BottomNavigationBarType.fixed,
+          elevation: 5,
+          backgroundColor:  AppColor.navBarColor,
+          selectedItemColor: Colors.white,
+          //currentIndex: logic.navigatorValue,
+          unselectedItemColor: Colors.grey,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          // onTap: logic.changeSelectedValue,
+          items: [
+            BottomNavigationBarItem(
+                backgroundColor: AppColor.navBarColor,
+                icon: ImageIcon(AssetImage("assets/image/home.png"),size: 5),
+                label: "home"),
+            BottomNavigationBarItem(
+                icon: ImageIcon(AssetImage('assets/image/challenge.png')),
+                label: "challenge"),
+            BottomNavigationBarItem(
+                icon: ImageIcon(AssetImage('assets/image/shop.png')),
+                label: "Shop"),
+            BottomNavigationBarItem(
+              icon: ImageIcon(AssetImage('assets/images/icon_settings.png')),
+              label: "setting",
+            )
+          ],
+        ),
+      ),
     );
   }
 }
